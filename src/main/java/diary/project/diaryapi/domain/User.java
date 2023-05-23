@@ -7,12 +7,16 @@ public class User {
     @Id
     private String id;
     private String pw;
+    private String name;
 
     public User() { }
-
-    public User(String id, String pw) {
-        this.id = id;
-        this.pw = pw;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public String getId() {
@@ -31,9 +35,17 @@ public class User {
         this.pw = pw;
     }
 
-    @Override
-    public String toString() {
-        return String.format("diary.project.diaryapi.domain.User[id:%s, pw:%s]", id, pw);
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User(String id, String pw, String name) {
+        this.id = id;
+        this.pw = pw;
+        this.name = name;
+    }
 }
