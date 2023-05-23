@@ -1,4 +1,4 @@
-package diary.project.diaryapi;
+package diary.project.diaryapi.domain;
 
 import org.springframework.data.annotation.Id;
 
@@ -33,7 +33,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("diary.project.diaryapi.User[id:%s, pw:%s]", id, pw);
+        return String.format("diary.project.diaryapi.domain.User[id:%s, pw:%s]", id, pw);
     }
 
 }

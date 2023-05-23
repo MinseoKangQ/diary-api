@@ -1,7 +1,6 @@
 package diary.project.diaryapi;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import diary.project.diaryapi.domain.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
