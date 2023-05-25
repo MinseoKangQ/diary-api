@@ -1,8 +1,11 @@
 package diary.project.diaryapi.repository;
 
+import diary.project.diaryapi.connection.DBConnectionUtil;
 import diary.project.diaryapi.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
+import org.springframework.jdbc.support.JdbcUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -21,14 +24,16 @@ public class UserRepository {
     }
 
     // 로그인 로직에서 호출하는 메서드
-    public User findById(Connection con, String id) throws SQLException {
+    public User findById(String id) throws SQLException {
 
-        String sql = "select * from where user_id = ?";
+        String sql = "select * from DIARY_USER where user_id = ?";
 
+        Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
+            con = getConnection();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
 
@@ -47,7 +52,13 @@ public class UserRepository {
             log.error("데이터 없음", e);
             throw e;
         } finally {
-
+            JdbcUtils.closeResultSet(rs);
+            JdbcUtils.closeStatement(pstmt);
+            JdbcUtils.closeConnection(con);
         }
+    }
+
+    public Connection getConnection() {
+        return DBConnectionUtil.getConnection();
     }
 }
