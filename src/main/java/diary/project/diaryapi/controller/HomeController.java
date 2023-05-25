@@ -1,4 +1,4 @@
-package diary.project.diaryapi;
+package diary.project.diaryapi.controller;
 
 import diary.project.diaryapi.domain.User;
 import org.springframework.web.bind.annotation.*;
